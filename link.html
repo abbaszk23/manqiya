@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>منقية | الوظائف</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<h2 class="logo">منقية</h2> <!-- شعار الموقع -->
+
+<ul class="nav-links"> <!-- روابط الموقع -->
+<li><a href="#">الرئيسية</a></li>
+<li><a href="#">من نحن</a></li>
+<li><a href="#">اللغة</a></li>
+<li><a href="#">تسجيل الدخول</a></li>
+</ul>
+
+<!-- زر المنيو -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+</header>
+
+
+<!-- ================= SIDE MENU ================= -->
+
+<div class="side-menu" id="sideMenu">
+
+<a href="#">حسابي</a>
+<a href="#">طلباتي</a>
+
+</div>
+
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section">
+
+<h2>ابحث عن وظيفة</h2>
+
+<input
+type="text"
+placeholder="اكتب اسم الوظيفة..."
+id="searchInput"
+onkeyup="searchJobs()"
+>
+
+<select id="jobFilter" onchange="filterJobs()">
+
+<option value="all">كل الوظائف</option>
+<option value="engineering">هندسي</option>
+<option value="medical">صحي</option>
+<option value="education">تعليمي</option>
+
+</select>
+
+</section>
+
+
+
+<!-- ================= JOBS ================= -->
+
+<section class="jobs">
+
+<div class="job" data-category="engineering">
+<h3>مهندس مدني</h3>
+<p>خبرة 3 سنوات</p>
+<button onclick="openPopup()">تقديم</button>
+</div>
+
+<div class="job" data-category="medical">
+<h3>ممرض</h3>
+<p>العمل في مستشفى خاص</p>
+<button onclick="openPopup()">تقديم</button>
+</div>
+
+<div class="job" data-category="engineering">
+<h3>مهندس كهرباء</h3>
+<p>مشاريع بنية تحتية</p>
+<button onclick="openPopup()">تقديم</button>
+</div>
+
+<div class="job" data-category="education">
+<h3>معلم رياضيات</h3>
+<p>مدرسة أهلية</p>
+<button onclick="openPopup()">تقديم</button>
+</div>
+
+</section>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* فتح واغلاق المنيو */
+
+function toggleMenu(){
+
+let menu = document.getElementById("sideMenu")
+
+menu.classList.toggle("open")
+
+}
+/* اغلاق المنيو عند الضغط خارجها */
+
+document.addEventListener("click", function(event){
+
+let menu = document.getElementById("sideMenu")
+let button = document.querySelector(".menu-btn")
+
+if(!menu.contains(event.target) && !button.contains(event.target)){
+menu.classList.remove("open")
+}
+
+})
+
+
+
+
+
+/* فلترة الوظائف */
+
+function filterJobs(){
+
+let filter = document.getElementById("jobFilter").value
+
+let jobs = document.querySelectorAll(".job")
+
+jobs.forEach(function(job){
+
+if(filter === "all" || job.dataset.category === filter){
+job.style.display="block"
+}
+
+else{
+job.style.display="none"
+}
+
+})
+
+}
+
+
+/* البحث عن الوظائف */
+
+function searchJobs(){
+
+let input = document.getElementById("searchInput").value.toLowerCase()
+
+let jobs = document.querySelectorAll(".job")
+
+jobs.forEach(function(job){
+
+let text = job.innerText.toLowerCase()
+
+if(text.includes(input)){
+job.style.display="block"
+}
+
+else{
+job.style.display="none"
+}
+
+})
+
+}
+
+/* فتح نافذة التقديم */
+
+function openPopup(){
+
+let popup = document.getElementById("applyPopup")
+
+popup.style.display = "flex"
+
+}
+
+
+/* اغلاق النافذة */
+
+function closePopup(){
+document.getElementById("applyPopup").style.display="none"
+}
+/* فتح نافذة التقديم */
+
+function openPopup(){
+
+document.getElementById("applyPopup").style.display="flex"
+
+}
+
+
+/* اغلاق النافذة */
+
+function closePopup(){
+
+document.getElementById("applyPopup").style.display="none"
+
+}
+
+
+/* إرسال الطلب */
+
+function submitApplication(){
+
+let id = document.getElementById("nationalId").value
+
+let error = document.getElementById("errorMsg")
+
+/* التحقق من الهوية */
+
+if(id.length !== 10 || isNaN(id)){
+
+error.innerText="رقم الهوية يجب أن يكون 10 أرقام"
+
+error.style.color="red"
+
+return
+
+}
+
+/* نجاح الطلب */
+
+alert("تم إرسال الطلب بنجاح")
+
+closePopup()
+
+}
+
+</script>
+
+<!-- نافذة التقديم -->
+
+<div class="apply-popup" id="applyPopup">
+
+<div class="popup-box">
+
+<h3>إدخال رقم الهوية</h3>
+
+<input 
+type="text"
+id="nationalId"
+placeholder="اكتب رقم الهوية"
+>
+
+<p id="errorMsg"></p>
+
+<button onclick="submitApplication()">إرسال الطلب</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
