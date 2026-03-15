@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقرير التوافق | منقية</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>تقرير التوافق </header>
+
+<div class="container">
+
+    <!-- ================= مؤشر التوافق ================= -->
+    <div class="match-section">
+        <h2>مؤشر التوافق مع الوظيفة</h2>
+        <div class="match-bar-container">
+            <div class="match-bar" id="matchBar"></div>
+        </div>
+        <div class="percentage-label" id="percentageLabel">نسبة التوافق: --%</div>
+    </div>
+
+    <!-- ================= تقرير الفجوات ================= -->
+    <div class="gap-section">
+        <h3>تقرير الفجوات</h3>
+        <ul class="gap-list" id="gapList">
+            <!-- العناصر تضاف ديناميكيًا -->
+        </ul>
+    </div>
+
+    <!-- ================= التوصيات ================= -->
+    <div class="recommend-section">
+        <h3>التوصيات لمعسكرات تدريبية</h3>
+        <ul class="recommend-list" id="recList">
+            <!-- العناصر تضاف ديناميكيًا -->
+        </ul>
+    </div>
+
+    <!-- ================= زر التقديم النهائي ================= -->
+    <button class="final-apply-btn" id="finalApplyBtn" onclick="finalApply()">تقديم نهائي</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
