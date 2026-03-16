@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منقية | تسجيل الدخول</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+
+<section class="login-section">
+  <form class="login-form" id="loginForm">
+    <h2 class="form-title">تسجيل الدخول</h2>
+
+    <label for="userType">نوع المستخدم:</label>
+    <select id="userType" onchange="toggleUserType()">
+      <option value="applicant">متقدم</option>
+      <option value="employee">موظف</option>
+    </select>
+
+    <!-- حقول المتقدم -->
+    <div id="applicantFields">
+      <label for="loginId">رقم الهوية:</label>
+      <input type="text" id="loginId" placeholder="10 أرقام" maxlength="10">
+
+      <div id="otpSection" class="hidden">
+        <label for="otpCode">رمز التحقق (OTP):</label>
+        <input type="text" id="otpCode" placeholder="أدخل الرمز">
+      </div>
+    </div>
+
+    <!-- حقول الموظف -->
+    <div id="employeeFields" class="hidden">
+      <label for="employeeUsername">اسم المستخدم:</label>
+      <input type="text" id="employeeUsername" placeholder="اسم المستخدم">
+
+      <label for="password">كلمة المرور:</label>
+      <input type="password" id="password" placeholder="كلمة المرور">
+    </div>
+
+    <button type="submit">تسجيل الدخول</button>
+    <p class="error-text" id="loginError"></p>
+
+    <div id="applicantData" class="info-display hidden">
+      <p id="userName">الاسم: ---</p>
+      <p id="userUniversity">الجامعة: ---</p>
+      <p id="userSkills">المهارات: ---</p>
+    </div>
+  </form>
+</section>
+
+<script>
+// ==================== تبديل حقول المتقدم / الموظف ====================
+function toggleUserType() {
+  const userType = document.getElementById('userType').value;
+  const applicantFields = document.getElementById('applicantFields');
+  const employeeFields = document.getElementById('employeeFields');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const otpSection = document.getElementById('otpSection');
+
+  if(userType === 'applicant'){
+    applicantFields.classList.remove('hidden');
+    employeeFields.classList.add('hidden');
+    confirmBtn.classList.add('hidden');
+    otpSection.classList.add('hidden');
+  } else {
+    applicantFields.classList.add('hidden');
+    employeeFields.classList.remove('hidden');
+    confirmBtn.classList.remove('hidden');
+  }
+}
+
+// ==================== محاكاة OTP للمتقدم ====================
+const loginIdInput = document.getElementById('loginId');
+loginIdInput.addEventListener('input', function(){
+  const otpSection = document.getElementById('otpSection');
+  const confirmBtn = document.getElementById('confirmBtn');
+
+  if(this.value.length === 10){
+    otpSection.classList.remove('hidden');
+    confirmBtn.classList.remove('hidden');
+  } else {
+    otpSection.classList.add('hidden');
+    confirmBtn.classList.add('hidden');
+  }
+});
+
+// ==================== التحقق من البيانات ====================
+function confirmLogin(){
+  const userType = document.getElementById('userType').value;
+  const loginError = document.getElementById('loginError');
+
+  if(userType === 'applicant'){
+    const id = document.getElementById('loginId').value;
+    const otp = document.getElementById('otpCode').value;
+
+    if(id.length !== 10){
+      loginError.textContent = 'رقم الهوية يجب أن يكون 10 أرقام';
+      return;
+    }
+    if(otp.length === 0){
+      loginError.textContent = 'الرجاء إدخال رمز التحقق';
+      return;
+    }
+    // عرض بيانات المتقدم كمثال
+    document.getElementById('applicantData').classList.remove('hidden');
+    document.getElementById('userName').textContent = 'الاسم: محمد علي';
+    document.getElementById('userUniversity').textContent = 'الجامعة: جامعة الملك سعود';
+    document.getElementById('userSkills').textContent = 'المهارات: HTML, CSS, JavaScript';
+
+    loginError.textContent = '';
+  } else {
+    const username = document.getElementById('employeeUsername').value;
+    const password = document.getElementById('password').value;
+
+    if(username === '' || password === ''){
+      loginError.textContent = 'الرجاء إدخال اسم المستخدم وكلمة المرور';
+      return;
+    }
+    // نجاح تسجيل دخول الموظف
+    window.location.href = 'jobs.html';
+  }
+}
+
+// ==================== منع إعادة تحميل الصفحة عند الضغط على زر التسجيل ====================
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  confirmLogin();
+});
+</script>
+
+</body>
+</html>
