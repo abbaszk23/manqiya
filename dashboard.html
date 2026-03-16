@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منقية | منصة التوظيف الذكية</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="jobs-page">
+
+<div class="jobs-wrapper">
+<header>
+    <ul class="nav-links">
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<li><a href="#" onclick="goHome(event)">الرئيسية</a></li>
+
+<a href="#" id="welcomeUser">أهلاً، بك</a>
+<li><a href="#" onclick="logout()">تسجيل خروج</a></li>
+</ul>
+<h2 class="logo">منقية</h2>
+</header>
+
+<div class="side-menu" id="sideMenu">
+    <a href="#">حسابي</a>
+    <a href="#">طلباتي</a>
+    <a href="#">من نحن</a>
+</div>
+
+<section class="hero">
+<h1>منصة منقية للتوظيف</h1>
+<p>بوابتك الذكية نحو مستقبل مهني أفضل</p>
+</section>
+
+<section class="search-section" style="text-align: center; padding: 40px 20px;">
+    <h2>ابحث عن وظيفة أحلامك</h2>
+    <input type="text" placeholder="اكتب اسم الوظيفة..." id="searchInput" onkeyup="searchJobs()" style="padding:10px; width:250px;">
+    
+    <select id="jobFilter" onchange="filterJobs()" style="padding:10px;">
+        <option value="all">كل القطاعات</option>
+        <option value="medical">القطاع الصحي</option>
+        <option value="tech">القطاع التقني</option>
+        <option value="eng">القطاع الهندسي</option>
+        <option value="admin">القطاع الإداري</option>
+        <option value="finance">القطاع المالي</option>
+        <option value="logistics">القطاع اللوجستي</option>
+    </select>
+</section>
+
+<section class="jobs" id="jobsContainer">
+        
+    <div class="job" data-category="medical">
+        <h3>طبيب عام</h3>
+        <p>تشخيص الحالات المرضية الشائعة ووصف العلاج المناسب</p>
+        <span class="salary">الراتب: 12,000 - 18,000</span>
+        <div class="requirements-text" style="display:none;">المتطلبات: بكالوريوس طب عام، ترخيص مزاولة المهنة، خبرة 2+ سنوات.</div>
+        <button onclick="openPopup('طبيب عام')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="medical">
+        <h3>التمريض</h3>
+        <p>مساعدة الطاقم الطبي وتقديم الرعاية للمرضى</p>
+        <span class="salary">الراتب: 7,000 - 10,000</span>
+        <button onclick="openPopup('التمريض')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="medical">
+        <h3>الصيدلة</h3>
+        <p>صرف الأدوية للمرضى تقديم الاستشارات الدوائية</p>
+        <span class="salary">الراتب: 9,000 - 12,000</span>
+        <button onclick="openPopup('الصيدلة')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="medical">
+        <h3>طبيب أسنان</h3>
+        <p>تشخيص وعلاج مشاكل الأسنان واللثة</p>
+        <span class="salary">الراتب: 13,000 - 20,000</span>
+        <button onclick="openPopup('طبيب أسنان')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="medical">
+        <h3>مسعف</h3>
+        <p>تقديم الإسعافات الأولية والرعاية الطبية الطارئة</p>
+        <span class="salary">الراتب: 6,000 - 9,000</span>
+        <button onclick="openPopup('مسعف')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="tech">
+        <h3>مهندس برمجيات</h3>
+        <p>تطوير البرمجيات والأنظمة الرقمية للشركة</p>
+        <span class="salary">الراتب: 10,000 - 15,000</span>
+        <button onclick="openPopup('مهندس برمجيات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="tech">
+        <h3>محلل نظم</h3>
+        <p>تحليل أنظمة الشركة وتحسين سير العمل عبر التكنولوجيا</p>
+        <span class="salary">الراتب: 9,000 - 13,000</span>
+        <button onclick="openPopup('محلل نظم')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="tech">
+        <h3>أخصائي أمن معلومات</h3>
+        <p>حماية بيانات وأنظمة الشركة من الهجمات السيبرانية</p>
+        <span class="salary">الراتب: 11,000 - 16,000</span>
+        <button onclick="openPopup('أخصائي أمن معلومات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="tech">
+        <h3>مسؤول دعم فني</h3>
+        <p>تقديم الدعم التقني للموظفين وحل مشاكل الأجهزة</p>
+        <span class="salary">الراتب: 6,000 - 8,000</span>
+        <button onclick="openPopup('مسؤول دعم فني')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="tech">
+        <h3>مهندس شبكات</h3>
+        <p>تصميم وإدارة الشبكات الداخلية وحل مشاكل الاتصال</p>
+        <span class="salary">الراتب: 9,500 - 14,000</span>
+        <button onclick="openPopup('مهندس شبكات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="eng">
+        <h3>مهندس مدني</h3>
+        <p>الإشراف على المشاريع الإنشائية ومطابقتها للمواصفات</p>
+        <span class="salary">الراتب: 9,000 - 14,000</span>
+        <button onclick="openPopup('مهندس مدني')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="eng">
+        <h3>مهندس معماري</h3>
+        <p>تصميم المباني والمخططات المعمارية والإشراف</p>
+        <span class="salary">الراتب: 10,000 - 15,000</span>
+        <button onclick="openPopup('مهندس معماري')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="eng">
+        <h3>مهندس كهرباء</h3>
+        <p>تصميم وصيانة الأنظمة الكهربائية وضمان سلامتها</p>
+        <span class="salary">الراتب: 9,500 - 14,000</span>
+        <button onclick="openPopup('مهندس كهرباء')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="eng">
+        <h3>مهندس ميكانيكا</h3>
+        <p>إدارة الأنظمة الميكانيكية وصيانتها في المشاريع</p>
+        <span class="salary">الراتب: 9,000 - 13,000</span>
+        <button onclick="openPopup('مهندس ميكانيكا')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="eng">
+        <h3>مهندس صناعي</h3>
+        <p>تحليل وتحسين العمليات التشغيلية وزيادة الإنتاجية</p>
+        <span class="salary">الراتب: 8,500 - 12,000</span>
+        <button onclick="openPopup('مهندس صناعي')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="admin">
+        <h3>مدير موارد بشرية</h3>
+        <p>إدارة شؤون الموظفين والتوظيف وتطوير بيئة العمل</p>
+        <span class="salary">الراتب: 12,000 - 18,000</span>
+        <button onclick="openPopup('مدير موارد بشرية')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="admin">
+        <h3>مدير مشروع</h3>
+        <p>الإشراف على المشاريع وضمان تنفيذها وفق الخطط</p>
+        <span class="salary">الراتب: 11,000 - 15,000</span>
+        <button onclick="openPopup('مدير مشروع')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="admin">
+        <h3>سكرتير تنفيذي</h3>
+        <p>تنظيم الاجتماعات والمراسلات ودعم الإدارة العليا</p>
+        <span class="salary">الراتب: 6,000 - 8,500</span>
+        <button onclick="openPopup('سكرتير تنفيذي')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="admin">
+        <h3>مساعد إداري</h3>
+        <p>تنظيم الملفات ومتابعة الأعمال اليومية للإدارة</p>
+        <span class="salary">الراتب: 5,500 - 7,500</span>
+        <button onclick="openPopup('مساعد إداري')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="admin">
+        <h3>مدير عمليات</h3>
+        <p>الإشراف على سير العمليات اليومية وضمان كفاءتها</p>
+        <span class="salary">الراتب: 12,000 - 17,000</span>
+        <button onclick="openPopup('مدير عمليات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="finance">
+        <h3>محاسب</h3>
+        <p>إعداد القوائم المالية ومتابعة العمليات اليومية</p>
+        <span class="salary">الراتب: 7,000 - 10,000</span>
+        <button onclick="openPopup('محاسب')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="finance">
+        <h3>مراجع مالي</h3>
+        <p>تدقيق الحسابات والعمليات المالية لضمان دقتها</p>
+        <span class="salary">الراتب: 9,000 - 13,000</span>
+        <button onclick="openPopup('مراجع مالي')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="finance">
+        <h3>محلل مالي</h3>
+        <p>تحليل البيانات المالية وإعداد التقارير للقرارات</p>
+        <span class="salary">الراتب: 10,000 - 14,000</span>
+        <button onclick="openPopup('محلل مالي')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="finance">
+        <h3>مدير مالي</h3>
+        <p>إدارة الموارد المالية للشركة ووضع الاستراتيجيات</p>
+        <span class="salary">الراتب: 12,000 - 18,000</span>
+        <button onclick="openPopup('مدير مالي')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="finance">
+        <h3>أمين صندوق</h3>
+        <p>إدارة النقدية والمعاملات المالية اليومية</p>
+        <span class="salary">الراتب: 6,000 - 9,000</span>
+        <button onclick="openPopup('أمين صندوق')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="logistics">
+        <h3>مدير لوجستيات</h3>
+        <p>الإشراف على سلسلة التوريد وتنظيم المخزون</p>
+        <span class="salary">الراتب: 12,000 - 18,000</span>
+        <button onclick="openPopup('مدير لوجستيات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="logistics">
+        <h3>أخصائي مخازن</h3>
+        <p>إدارة المخزون واستلام وتخزين البضائع</p>
+        <span class="salary">الراتب: 7,000 - 10,000</span>
+        <button onclick="openPopup('أخصائي مخازن')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="logistics">
+        <h3>مشرف نقل</h3>
+        <p>تنظيم جداول النقل للشحنات والتأكد من الأمان</p>
+        <span class="salary">الراتب: 8,500 - 12,000</span>
+        <button onclick="openPopup('مشرف نقل')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="logistics">
+        <h3>منسق مشتريات</h3>
+        <p>إدارة عمليات الشراء من الموردين ومتابعة الطلبات</p>
+        <span class="salary">الراتب: 9,000 - 13,000</span>
+        <button onclick="openPopup('منسق مشتريات')">تقديم الآن</button>
+    </div>
+
+    <div class="job" data-category="logistics">
+        <h3>أمين مستودع</h3>
+        <p>متابعة المخزون اليومي وترتيب البضائع</p>
+        <span class="salary">الراتب: 6,500 - 9,500</span>
+        <button onclick="openPopup('أمين مستودع')">تقديم الآن</button>
+    </div>
+</section>
+
+<div class="popup" id="matchPopup">
+<div class="popup-box">
+<h3>نتيجة التوافق</h3>
+<div class="match" id="matchPercent">70%</div>
+<div id="gapReport"></div>
+<br>
+
+<button onclick="closePopup()">إغلاق</button>
+</div>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

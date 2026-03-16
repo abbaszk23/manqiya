@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منقية | تسجيل الدخول الذكي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+
+<section class="login-section">
+    <div class="login-form">
+        <div class="login-header">
+            <h1 class="logo-text">منقية</h1>
+            <p>نظام التوظيف والتوافق المهني</p>
+        </div>
+
+        <hr>
+
+        <div id="userTypeContainer">
+            <label class="field-label">نوع الحساب:</label>
+            <select id="userType" onchange="toggleUserType()">
+                <option value="applicant">متقدم (باحث عن فرصة)</option>
+                <option value="employee">موظف (إدارة المنصة)</option>
+            </select>
+        </div>
+
+        <div id="applicantFields">
+            <div id="idStep">
+                <label class="field-label">رقم الهوية الوطنية / الإقامة:</label>
+                <input type="text" id="loginId" placeholder="أدخل 10 أرقام" maxlength="10">
+                <button type="button" class="btn-primary" onclick="handleSendOtp()">إرسال رمز التحقق (OTP)</button>
+            </div>
+
+            <div id="otpSection" class="hidden">
+                <div class="alert-info">تم إرسال رمز التحقق إلى رقم الجوال المرتبط بـ "أبشر"</div>
+                <label class="field-label">رمز التحقق:</label>
+                <input type="text" id="otpCode" placeholder="****" maxlength="4" style="letter-spacing: 10px; font-size: 24px;">
+                <button type="button" class="btn-primary" onclick="processOtp()">تحقق من الرمز</button>
+                <p class="resend-text">لم يصلك الرمز؟ <a href="#">إعادة إرسال</a></p>
+            </div>
+        </div>
+
+        <div id="employeeFields" class="hidden">
+            <label class="field-label">اسم المستخدم:</label>
+            <input type="text" id="empUser" placeholder="Username">
+            <label class="field-label">كلمة المرور:</label>
+            <input type="password" id="empPass" placeholder="Password">
+            <button type="button" class="btn-dark" onclick="employeeLogin()">دخول الإدارة</button>
+        </div>
+
+        <div id="reviewDataSection" class="hidden">
+            <div class="review-card">
+                <h3 class="review-title">تأكيد البيانات الشخصية</h3>
+                <p class="review-sub">يرجى مراجعة بياناتك المسترجعة من النفاذ الوطني</p>
+                
+                <div class="input-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="editName">
+                </div>
+                <div class="input-group">
+                    <label>الجهة التعليمية:</label>
+                    <input type="text" id="editUniversity">
+                </div>
+                <div class="input-group">
+                    <label>التخصص الدقيق:</label>
+                    <input type="text" id="editMajor">
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-confirm" onclick="confirmAndGo()">تأكيد ودخول</button>
+                    <button type="button" class="btn-cancel" onclick="location.reload()">تراجع</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="error-text" id="loginError"></p>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
